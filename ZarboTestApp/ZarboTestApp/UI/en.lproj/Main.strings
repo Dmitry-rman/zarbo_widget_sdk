@@ -1,0 +1,36 @@
+
+/* Class = "UILabel"; text = "Popover"; ObjectID = "28Q-6f-L4H"; */
+"28Q-6f-L4H.text" = "Popover";
+
+/* Class = "UINavigationItem"; title = "Zarbo Test App"; ObjectID = "EMN-T5-BCT"; */
+"EMN-T5-BCT.title" = "Zarbo Test App";
+
+/* Class = "UIButton"; configuration.title = "Close"; ObjectID = "EoZ-Zn-V5L"; */
+"EoZ-Zn-V5L.configuration.title" = "Close";
+
+/* Class = "UIButton"; normalTitle = "Button"; ObjectID = "EoZ-Zn-V5L"; */
+"EoZ-Zn-V5L.normalTitle" = "Button";
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "Lib-mE-ja6"; */
+"Lib-mE-ja6.text" = "Label";
+
+/* Class = "UITextField"; placeholder = "sku number"; ObjectID = "LjL-MY-yug"; */
+"LjL-MY-yug.placeholder" = "sku number";
+
+/* Class = "UITabBarItem"; title = "Examples"; ObjectID = "NVf-cj-V18"; */
+"NVf-cj-V18.title" = "Examples";
+
+/* Class = "UILabel"; text = "Modal presentation"; ObjectID = "UHL-o5-6uv"; */
+"UHL-o5-6uv.text" = "Modal presentation";
+
+/* Class = "UILabel"; text = "Push navigation"; ObjectID = "a4i-9l-jrj"; */
+"a4i-9l-jrj.text" = "Push navigation";
+
+/* Class = "UIButton"; normalTitle = "Try it on"; ObjectID = "bXQ-bu-l8l"; */
+"bXQ-bu-l8l.normalTitle" = "Try it on";
+
+/* Class = "UITabBarItem"; title = "Search"; ObjectID = "r9U-tc-dUp"; */
+"r9U-tc-dUp.title" = "Search";
+
+/* Class = "UILabel"; text = "SKU:"; ObjectID = "xda-sT-c6Y"; */
+"xda-sT-c6Y.text" = "SKU:";

@@ -1,0 +1,56 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0 effective-5.10 (swiftlang-6.0.0.9.10 clang-1600.0.26.2)
+// swift-module-flags: -target x86_64-apple-ios14.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name ZarboWidgetSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import ARKit
+import Combine
+import Foundation
+import QuickLook
+import RealityKit
+import Swift
+import SwiftUI
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+final public class Zarbo {
+  public static var configuration: ZarboWidgetSDK.Zarbo.ZarboConfiguration? {
+    get
+    set
+  }
+  public init(configuration: ZarboWidgetSDK.Zarbo.ZarboConfiguration?)
+  final public func presentModelView(sku: Swift.String, previewType: ZarboWidgetSDK.Zarbo.ZarboPreview = .qlPreview(urlToShare: nil), presenting presentingViewController: UIKit.UIViewController, onProgress: @escaping (_ progress: Swift.Float) -> Swift.Void, onCompleted: @escaping (ZarboWidgetSDK.Zarbo.ZarboCompletion) -> Swift.Void) -> ZarboWidgetSDK.Zarbo.ZarboStatus
+  final public func cancel()
+  final public class func cancel()
+  final public class func presentModelView(sku: Swift.String, previewType: ZarboWidgetSDK.Zarbo.ZarboPreview = .qlPreview(urlToShare: nil), presenting presentingViewController: UIKit.UIViewController, onProgress: @escaping (_ progress: Swift.Float) -> Swift.Void, onCompleted: @escaping (ZarboWidgetSDK.Zarbo.ZarboCompletion) -> Swift.Void) -> ZarboWidgetSDK.Zarbo.ZarboStatus
+  @objc deinit
+}
+
+extension ZarboWidgetSDK.Zarbo {
+  public struct ZarboConfiguration {
+    public init(apiKey: Swift.String, host: Swift.String)
+  }
+}
+extension ZarboWidgetSDK.Zarbo {
+  public enum ZarboStatus {
+    case arIsNotSupported
+    case sdkIsNotConfigured
+    case start
+    public static func == (a: ZarboWidgetSDK.Zarbo.ZarboStatus, b: ZarboWidgetSDK.Zarbo.ZarboStatus) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public enum ZarboCompletion {
+    case cancelled
+    case error(_: any Swift.Error)
+    case success
+  }
+  public enum ZarboPreview {
+    case qlPreview(urlToShare: Foundation.URL?)
+    case zarbo(urlToShare: Foundation.URL?)
+  }
+}
+extension ZarboWidgetSDK.Zarbo.ZarboStatus : Swift.Equatable {}
+extension ZarboWidgetSDK.Zarbo.ZarboStatus : Swift.Hashable {}
