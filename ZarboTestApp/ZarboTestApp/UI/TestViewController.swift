@@ -88,9 +88,9 @@ final class TestViewController: UIViewController {
         let modelSKU = skuTextField.text ?? ""
         dataStorage.setSKU(modelSKU)
         
-        let isARQuickLook = true
+        let isARQuickLook = false
         let type: Zarbo.ZarboPreview
-        let urlToShare: URL? = nil
+        let urlToShare: URL? = URL.init(string: "https://embed.zarbo.tech/82e606a0-07c0-4417-9a7d-733d789150c4/6461")
         if isARQuickLook {
             // Zarbo.ZarboPreview.qlPreview использует стандарный QLPreviewController и ARQuickLook
             type = .qlPreview(urlToShare: urlToShare)
