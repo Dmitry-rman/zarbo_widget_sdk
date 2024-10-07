@@ -1445,9 +1445,79 @@
     {
       "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
       "kind": "FloatLiteral",
-      "offset": 355,
+      "offset": 371,
+      "length": 3,
+      "value": "1.0"
+    },
+    {
+      "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
+      "kind": "StringLiteral",
+      "offset": 4576,
+      "length": 53,
+      "value": "\"Не удалось загрузить модель\""
+    },
+    {
+      "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4785,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4799,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4813,
+      "length": 1,
+      "value": "1"
+    },
+    {
+      "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 4924,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5290,
       "length": 4,
-      "value": "0.01"
+      "value": "1000"
+    },
+    {
+      "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5338,
+      "length": 1,
+      "value": "0"
+    },
+    {
+      "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5344,
+      "length": 2,
+      "value": "10"
+    },
+    {
+      "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
+      "kind": "IntegerLiteral",
+      "offset": 5351,
+      "length": 2,
+      "value": "10"
+    },
+    {
+      "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
+      "kind": "BooleanLiteral",
+      "offset": 5571,
+      "length": 5,
+      "value": "false"
     },
     {
       "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ZarboPreviewViewController.swift",
