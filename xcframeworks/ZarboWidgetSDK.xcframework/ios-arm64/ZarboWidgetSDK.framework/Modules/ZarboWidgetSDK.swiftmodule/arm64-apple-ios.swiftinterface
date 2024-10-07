@@ -7,6 +7,7 @@ import Combine
 import Foundation
 import QuickLook
 import RealityKit
+import SceneKit
 import Swift
 import SwiftUI
 import UIKit
