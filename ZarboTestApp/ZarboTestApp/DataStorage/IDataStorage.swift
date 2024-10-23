@@ -8,6 +8,7 @@
 import Foundation
 
 protocol IDataStorage {
-    func getSKU() -> String?
-    func setSKU(_ value: String)
+    var sku: String? { get set }
+    var usdzUrl: String? { get set }
+    var packetUrl: String? { get set }
 }

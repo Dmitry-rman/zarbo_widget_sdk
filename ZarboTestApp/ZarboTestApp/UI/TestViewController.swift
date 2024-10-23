@@ -12,12 +12,34 @@ final class TestViewController: UIViewController {
     
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var skuTextField: UITextField!
+    @IBOutlet weak var usdzUrlTextField: UITextField!
+    @IBOutlet weak var packageUrlTextField: UITextField!
     @IBOutlet weak var loaderView: UIActivityIndicatorView!
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var dismissButton: UIButton!
     
-    private let dataStorage: IDataStorage = DataStorage()
-
+    private var dataStorage: IDataStorage = DataStorage()
+    private var packetDownloadFileTask: URLSessionDownloadTask?
+    private var usdzDownloadFileTask: URLSessionDownloadTask?
+    private lazy var urlSession: URLSession = {
+        let configuration = URLSessionConfiguration.default
+        return URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
+    }()
+    
+    private enum FileType {
+        case packetFile
+        case usdzFile
+        
+        var fileExtension: String {
+            switch self {
+            case .packetFile:
+                return "zwb"
+            case .usdzFile:
+                return "usdz"
+            }
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -27,9 +49,103 @@ final class TestViewController: UIViewController {
     }
     
     // MARK: - actions
+    
+    @IBAction
+    func showCustomButtonTap(_ sender: Any) {
+        guard let packageUrl = Bundle.main.url(forResource: "chair", withExtension: "zwb"),
+              let packetData: Data = try? Data(contentsOf: packageUrl) else {
+            return
+        }
+        
+        hideKeyboard()
+        
+        DispatchQueue.global(qos: .utility).async {
+            do {
+                var widget = try ZarboWidgetSDK.getWidget(data: packetData)
+                widget.model.title = "Новая модель"
+                widget.model.urlToShare = URL.init(string: "https://embed.zarbo.tech/82e606a0-07c0-4417-9a7d-733d789150c4/6461")
+                
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    let status = ZarboWidgetSDK.showPackage(widget: widget, on: self)
+                    self.processStatus(status)
+                }
+            } catch {
+                DispatchQueue.main.async { [weak self] in
+                    guard let self else { return }
+                    self.showError(error.localizedDescription)
+                    self.setStatus("Ошибка")
+                }
+            }
+        }
+    }
+    
+    @IBAction
+    func showLocalPackageButtonTap(_ sender: Any) {
+        guard let packageUrl = Bundle.main.url(forResource: "chair", withExtension: "zwb"),
+              let packetData: Data = try? Data(contentsOf: packageUrl) else {
+            let errorText = "Ошибка пакета"
+            self.showError(errorText)
+            self.setStatus("Ошибка")
+            return
+        }
+        
+        hideKeyboard()
+        let status = ZarboWidgetSDK.showPackage(data: packetData, on: self)
+        processStatus(status)
+    }
+    
+    @IBAction
+    func showUsdzFromUrl(_ sender: Any) {
+        guard let text = usdzUrlTextField.text,
+              let url: URL = URL.init(string: text) else {
+            self.showError("Неправильный URL usdz файла")
+            return
+        }
+        
+        hideKeyboard()
+        showLoader()
+        setStatus("Скачивание")
+        
+        dataStorage.usdzUrl = url.absoluteString
+        usdzDownloadFileTask = urlSession.downloadTask(with: url)
+        usdzDownloadFileTask?.resume()
+    }
+    
+    @IBAction
+    func showUsdz(_ sender: Any) {
+        hideKeyboard()
+        
+        let url: URL = Bundle.main.url(forResource: "banya_38a13", withExtension: "usdz")!
+        let status = ZarboWidgetSDK.showPackage(
+            modelUrl: url,
+            urlToShare: URL.init(string: "https://embed.zarbo.tech/82e606a0-07c0-4417-9a7d-733d789150c4/6461"),
+            title: "Баня",
+            on: self
+        )
+        
+        processStatus(status)
+    }
+    
+    @IBAction
+    func showPackageFromUrl(_ sender: Any) {
+        guard let text = packageUrlTextField.text,
+              let url: URL = .init(string: text) else {
+            self.showError("Неправильный URL пакета")
+            return
+        }
+        
+        hideKeyboard()
+        showLoader()
+        setStatus("Скачивание")
+        
+        dataStorage.packetUrl = url.absoluteString
+        packetDownloadFileTask = urlSession.downloadTask(with: url)
+        packetDownloadFileTask?.resume()
+    }
 
     @IBAction
-    func actionButtonTap(_ sender: Any) {
+    func searchActionButtonTap(_ sender: Any) {
         if loaderView.isAnimating {
             cancelAction()
         } else {
@@ -45,8 +161,16 @@ final class TestViewController: UIViewController {
     // MARK: - private
     
     @MainActor
+    private func hideKeyboard() {
+        usdzUrlTextField.resignFirstResponder()
+        packageUrlTextField.resignFirstResponder()
+        skuTextField.resignFirstResponder()
+    }
+    
+    @MainActor
     private func cancelAction() {
-        Zarbo.cancel()
+        packetDownloadFileTask?.cancel()
+        usdzDownloadFileTask?.cancel()
     }
     
     @MainActor
@@ -83,32 +207,20 @@ final class TestViewController: UIViewController {
     
     private func searchAction() {
         
-        skuTextField?.resignFirstResponder()
+        hideKeyboard()
         
         let modelSKU = skuTextField.text ?? ""
-        dataStorage.setSKU(modelSKU)
+        dataStorage.sku = modelSKU
         
-        let isARQuickLook = false
-        let type: Zarbo.ZarboPreview
-        let urlToShare: URL? = URL.init(string: "https://embed.zarbo.tech/82e606a0-07c0-4417-9a7d-733d789150c4/6461")
-        if isARQuickLook {
-            // Zarbo.ZarboPreview.qlPreview использует стандарный QLPreviewController и ARQuickLook
-            type = .qlPreview(urlToShare: urlToShare)
-        } else {
-            // Zarbo.ZarboPreview.zarbo использует ARKit и увеличивает расход памяти. Но позволяет шарить свою ссылку и др.
-           type = .zarbo(urlToShare: urlToShare)
-        }
-        
-        let status = Zarbo.presentModelView(
+        let status = ZarboWidgetSDK.showPackage(
             sku: modelSKU,
-            previewType: type, // Этот параметр можно опустить, по-умолчанию .qlPreview
-            presenting: self
-        ) { [weak self] progress in
+            on: self,
+            onProgress: { [weak self] progress in
             self?.changeProgress(progress)
-        } onCompleted: { [weak self] result in
+        }, onCompleted: { [weak self] result in
             guard let self else { return }
             self.hideLoader()
-        
+
             switch (result) {
             case .error(let error):
                 let errorText = error.localizedDescription
@@ -121,28 +233,46 @@ final class TestViewController: UIViewController {
             @unknown default:
                 self.setStatus("Неизвестный статус")
             }
-            
+
             self.actionButton.setTitle(NSLocalizedString("Try it on", comment: ""), for: .normal)
-        }
+        })
+        
+        processStatus(status)
+    }
+    
+    private func processStatus(_ status: ZarboWidgetSDK.ZWMStatus) {
         
         switch status {
         case .arIsNotSupported:
             self.showError("AR не поддерживается на этом устройстве!")
+        case .showed:
+            self.setStatus("Показ ZarboWidget")
         case .start:
             self.setStatus("Запуск ZarboWidget")
             self.showLoader()
             self.actionButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
         case .sdkIsNotConfigured:
-            self.showError("ZarboWidgetSDK не сконфигурирован!") 
+            self.showError("ZarboWidgetSDK не сконфигурирован!")
+        case .error(let error):
+            self.showError(error.localizedDescription)
         @unknown default:
             self.setStatus("Неизвестный статус")
         }
     }
     
     private func configureUI() {
-        skuTextField.text = dataStorage.getSKU()
+        
+        skuTextField.text = dataStorage.sku
         skuTextField.delegate = self
         skuTextField.returnKeyType = .done
+        
+        usdzUrlTextField.text = dataStorage.usdzUrl
+        usdzUrlTextField.delegate = self
+        usdzUrlTextField.returnKeyType = .done
+        
+        packageUrlTextField.text = dataStorage.packetUrl
+        packageUrlTextField.delegate = self
+        packageUrlTextField.returnKeyType = .done
         
         dismissButton.setTitle(NSLocalizedString("Close", comment: ""), for: .normal)
         actionButton.layer.cornerRadius = 8.0
@@ -151,6 +281,24 @@ final class TestViewController: UIViewController {
     
     private func setStatus(_ text: String) {
         statusLabel.text = text
+    }
+    
+    private func getLocalUrl(from location: URL, fileType: FileType) -> URL? {
+        let tempDirectoryPath = NSTemporaryDirectory()
+        let destinationUrl: URL = URL.init(fileURLWithPath: tempDirectoryPath).appendingPathComponent("tmp_file.\(fileType.fileExtension)")
+ 
+        do {
+            // Перемещаем загруженный файл в нужное место
+            let fileManager = FileManager.default
+            if fileManager.fileExists(atPath: destinationUrl.path) {
+                let _ = try? fileManager.removeItem(at: destinationUrl)
+            }
+            try fileManager.moveItem(at: location, to: destinationUrl)
+            return destinationUrl
+        } catch {
+            showError(error.localizedDescription)
+            return nil
+        }
     }
     
     deinit {
@@ -167,7 +315,79 @@ extension TestViewController: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        skuTextField?.resignFirstResponder()
+        textField.resignFirstResponder()
         return true
+    }
+}
+
+extension TestViewController: URLSessionDownloadDelegate {
+    
+    func urlSession(
+        _ session: URLSession,
+        downloadTask: URLSessionDownloadTask,
+        didFinishDownloadingTo location: URL
+    ) {
+        let fileType: FileType
+        
+        if downloadTask == usdzDownloadFileTask {
+            fileType = .usdzFile
+        } else if downloadTask == packetDownloadFileTask {
+            fileType = .packetFile
+        } else {
+            return
+        }
+        
+        if let url = self.getLocalUrl(from: location, fileType: fileType) {
+            
+            DispatchQueue.main.async { [weak self] in
+                guard let self else { return }
+                
+                self.hideLoader()
+                self.setStatus("Завершено скачивание")
+
+                do {
+                    let status: ZarboWidgetSDK.ZWMStatus
+                    
+                    switch fileType {
+                    case .packetFile:
+                        let data = try Data.init(contentsOf: url)
+                        status = ZarboWidgetSDK.showPackage(data: data, on: self)
+                    case .usdzFile:
+                        status = ZarboWidgetSDK.showPackage(modelUrl: url, on: self)
+                    }
+                    
+                    self.processStatus(status)
+                } catch {
+                    self.showError(error.localizedDescription)
+                    self.setStatus("Ошибка")
+                }
+            }
+        }
+    }
+    
+    // Делегат для отслеживания прогресса
+    func urlSession(
+        _ session: URLSession,
+        downloadTask: URLSessionDownloadTask,
+        didWriteData bytesWritten: Int64,
+        totalBytesWritten: Int64,
+        totalBytesExpectedToWrite: Int64
+    ) {
+        let progress = Float(totalBytesWritten) / Float(totalBytesExpectedToWrite)
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.changeProgress(progress)
+        }
+    }
+    
+    func urlSession(
+        _ session: URLSession,
+        task: URLSessionTask,
+        didCompleteWithError error: Error?
+    ) {
+        if let error {
+            showError(error.localizedDescription)
+            setStatus("Ошибка")
+        }
     }
 }

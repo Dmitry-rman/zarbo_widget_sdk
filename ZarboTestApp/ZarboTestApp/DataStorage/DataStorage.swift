@@ -7,18 +7,38 @@
 
 import Foundation
 
-final class DataStorage  {
-    private let SKU_KEY = "sku"
+struct DataStorage  {
+    
+    enum DataKey: String {
+        case SKU_KEY = "sku"
+        case USDZ_URL_KEY = "usdzUrl"
+        case PACKET_URL_KEY = "packetUrl"
+    }
+    
+    private func setValue<T>(_ value: T, key: DataKey) {
+        UserDefaults.standard.setValue(value, forKey: key.rawValue)
+        UserDefaults.standard.synchronize()
+    }
+    
+    private func getValue(forKey key: DataKey) -> Any? {
+        UserDefaults.standard.value(forKey: key.rawValue)
+    }
 }
 
 extension DataStorage: IDataStorage {
     
-    func getSKU() -> String? {
-        UserDefaults.standard.string(forKey: SKU_KEY)
+    var usdzUrl: String? {
+        get { getValue(forKey: .USDZ_URL_KEY) as? String }
+        set { setValue(newValue, key: .USDZ_URL_KEY) }
     }
     
-    func setSKU(_ value: String) {
-        UserDefaults.standard.setValue(value, forKey: SKU_KEY)
-        UserDefaults.standard.synchronize()
+    var packetUrl: String? {
+        get { getValue(forKey: .PACKET_URL_KEY) as? String }
+        set { setValue(newValue, key: .PACKET_URL_KEY) }
+    }
+    
+    var sku: String? {
+        get { getValue(forKey: .SKU_KEY) as? String }
+        set { setValue(newValue, key: .SKU_KEY) }
     }
 }
