@@ -1,0 +1,324 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.0 effective-5.10 (swiftlang-6.0.0.9.10 clang-1600.0.26.2)
+// swift-module-flags: -target arm64-apple-ios14.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-bare-slash-regex -module-name ZarboWidgetSDK
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface
+import ARKit
+import Combine
+import Compression
+import CoreFoundation
+import Foundation
+import QuickLook
+import RealityKit
+import SceneKit
+import Swift
+import SwiftUI
+import UIKit
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+import zlib
+final public class ZarboSDK {
+  public static var configuration: ZarboWidgetSDK.ZarboSDK.ZarboConfiguration? {
+    get
+    set
+  }
+  public static var isSupportedAR: Swift.Bool {
+    get
+  }
+  public init(configuration: ZarboWidgetSDK.ZarboSDK.ZarboConfiguration?)
+  public static func getWidget(data: Foundation.Data) throws -> ZarboWidgetSDK.ZarboSDK.ZWWidget
+  final public func getWidget(data: Foundation.Data) throws -> ZarboWidgetSDK.ZarboSDK.ZWWidget
+  @_Concurrency.MainActor public static func showPackage(widget: ZarboWidgetSDK.ZarboSDK.ZWWidget, on viewController: UIKit.UIViewController) -> ZarboWidgetSDK.ZarboSDK.ZWMStatus
+  @_Concurrency.MainActor public static func showPackage(modelUrl: Foundation.URL, urlToShare: Foundation.URL? = nil, title: Swift.String? = nil, on viewController: UIKit.UIViewController) -> ZarboWidgetSDK.ZarboSDK.ZWMStatus
+  @_Concurrency.MainActor final public func showPackage(modelUrl: Foundation.URL, urlToShare: Foundation.URL? = nil, title: Swift.String? = nil, on viewController: UIKit.UIViewController) -> ZarboWidgetSDK.ZarboSDK.ZWMStatus
+  public static func showPackage(data: Foundation.Data, on viewController: UIKit.UIViewController, onCompleted: @escaping (ZarboWidgetSDK.ZarboSDK.ZarboCompletion) -> Swift.Void) -> ZarboWidgetSDK.ZarboSDK.ZWMStatus
+  public static func showPackage(sku: Swift.String, on viewController: UIKit.UIViewController, onProgress: @escaping (_ progress: Swift.Float) -> Swift.Void, onCompleted: @escaping (ZarboWidgetSDK.ZarboSDK.ZarboCompletion) -> Swift.Void) -> ZarboWidgetSDK.ZarboSDK.ZWMStatus
+  public static func cancel()
+  @objc deinit
+}
+extension ZarboWidgetSDK.ZarboSDK {
+  public enum ZWMStatus {
+    case arIsNotSupported
+    case start
+    case showed
+    case sdkIsNotConfigured
+    case error(_: any Swift.Error)
+  }
+  public enum ZarboCompletion {
+    case cancelled
+    case error(_: any Swift.Error)
+    case success
+  }
+}
+extension ZarboWidgetSDK.Archive {
+  final public var data: Foundation.Data? {
+    get
+  }
+}
+extension Foundation.FileManager {
+  @available(*, deprecated, renamed: "unzipItem(at:to:skipCRC32:progress:pathEncoding:)")
+  public func unzipItem(at sourceURL: Foundation.URL, to destinationURL: Foundation.URL, skipCRC32: Swift.Bool = false, progress: Foundation.Progress? = nil, preferredEncoding: Swift.String.Encoding?) throws
+}
+public typealias FILEPointer = Swift.UnsafeMutablePointer<_stdio.FILE>
+extension Foundation.Data {
+  public enum DataError : Swift.Error {
+    case unreadableFile
+    case unwritableFile
+    public static func == (a: Foundation.Data.DataError, b: Foundation.Data.DataError) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+}
+extension ZarboWidgetSDK.Archive {
+  final public func addEntry(with path: Swift.String, relativeTo baseURL: Foundation.URL, compressionMethod: ZarboWidgetSDK.CompressionMethod = .none, bufferSize: Swift.Int = defaultWriteChunkSize, progress: Foundation.Progress? = nil) throws
+  final public func addEntry(with path: Swift.String, fileURL: Foundation.URL, compressionMethod: ZarboWidgetSDK.CompressionMethod = .none, bufferSize: Swift.Int = defaultWriteChunkSize, progress: Foundation.Progress? = nil) throws
+  final public func addEntry(with path: Swift.String, type: ZarboWidgetSDK.Entry.EntryType, uncompressedSize: Swift.Int64, modificationDate: Foundation.Date = Date(), permissions: Swift.UInt16? = nil, compressionMethod: ZarboWidgetSDK.CompressionMethod = .none, bufferSize: Swift.Int = defaultWriteChunkSize, progress: Foundation.Progress? = nil, provider: (_ position: Swift.Int64, _ size: Swift.Int) throws -> Foundation.Data) throws
+  final public func remove(_ entry: ZarboWidgetSDK.Entry, bufferSize: Swift.Int = defaultReadChunkSize, progress: Foundation.Progress? = nil) throws
+}
+extension Foundation.Data {
+  @available(*, deprecated, message: "Please use `Int64` for `size` and provider `position`.")
+  public static func compress(size: Swift.Int, bufferSize: Swift.Int, provider: (_ position: Swift.Int, _ size: Swift.Int) throws -> Foundation.Data, consumer: (_ data: Foundation.Data) throws -> Swift.Void) throws -> ZarboWidgetSDK.CRC32
+  @available(*, deprecated, message: "Please use `Int64` for `size` and provider `position`.")
+  public static func decompress(size: Swift.Int, bufferSize: Swift.Int, skipCRC32: Swift.Bool, provider: (_ position: Swift.Int, _ size: Swift.Int) throws -> Foundation.Data, consumer: (_ data: Foundation.Data) throws -> Swift.Void) throws -> ZarboWidgetSDK.CRC32
+}
+extension Foundation.FileManager {
+  public func zipItem(at sourceURL: Foundation.URL, to destinationURL: Foundation.URL, shouldKeepParent: Swift.Bool = true, compressionMethod: ZarboWidgetSDK.CompressionMethod = .none, progress: Foundation.Progress? = nil) throws
+  public func unzipItem(at sourceURL: Foundation.URL, to destinationURL: Foundation.URL, skipCRC32: Swift.Bool = false, allowUncontainedSymlinks: Swift.Bool = false, progress: Foundation.Progress? = nil, pathEncoding: Swift.String.Encoding? = nil) throws
+}
+extension Foundation.URL {
+  public func isContained(in parentDirectoryURL: Foundation.URL) -> Swift.Bool
+}
+extension ZarboWidgetSDK.Archive {
+  final public func totalUnitCountForRemoving(_ entry: ZarboWidgetSDK.Entry) -> Swift.Int64
+  final public func totalUnitCountForReading(_ entry: ZarboWidgetSDK.Entry) -> Swift.Int64
+  final public func totalUnitCountForAddingItem(at url: Foundation.URL) -> Swift.Int64
+}
+extension ZarboWidgetSDK.Archive {
+  @available(*, deprecated, message: "Please use `Int` for `bufferSize`.")
+  final public func addEntry(with path: Swift.String, relativeTo baseURL: Foundation.URL, compressionMethod: ZarboWidgetSDK.CompressionMethod = .none, bufferSize: Swift.UInt32, progress: Foundation.Progress? = nil) throws
+  @available(*, deprecated, message: "Please use `Int` for `bufferSize`.")
+  final public func addEntry(with path: Swift.String, fileURL: Foundation.URL, compressionMethod: ZarboWidgetSDK.CompressionMethod = .none, bufferSize: Swift.UInt32, progress: Foundation.Progress? = nil) throws
+  @available(*, deprecated, message: "Please use `Int64` for `uncompressedSize` and provider `position`. `Int` for `bufferSize`.")
+  final public func addEntry(with path: Swift.String, type: ZarboWidgetSDK.Entry.EntryType, uncompressedSize: Swift.UInt32, modificationDate: Foundation.Date = Date(), permissions: Swift.UInt16? = nil, compressionMethod: ZarboWidgetSDK.CompressionMethod = .none, bufferSize: Swift.Int = defaultWriteChunkSize, progress: Foundation.Progress? = nil, provider: (_ position: Swift.Int, _ size: Swift.Int) throws -> Foundation.Data) throws
+  @available(*, deprecated, message: "Please use `Int` for `bufferSize`.")
+  final public func remove(_ entry: ZarboWidgetSDK.Entry, bufferSize: Swift.UInt32, progress: Foundation.Progress? = nil) throws
+}
+public let defaultReadChunkSize: Swift.Int
+public let defaultWriteChunkSize: Swift.Int
+public let defaultFilePermissions: Swift.UInt16
+public let defaultDirectoryPermissions: Swift.UInt16
+final public class Archive : Swift.Sequence {
+  public enum ArchiveError : Swift.Error {
+    case unreadableArchive
+    case unwritableArchive
+    case invalidEntryPath
+    case invalidCompressionMethod
+    case invalidCRC32
+    case cancelledOperation
+    case invalidBufferSize
+    case invalidEntrySize
+    case invalidLocalHeaderDataOffset
+    case invalidLocalHeaderSize
+    case invalidCentralDirectoryOffset
+    case invalidCentralDirectorySize
+    case invalidCentralDirectoryEntryCount
+    case missingEndOfCentralDirectoryRecord
+    case uncontainedSymlink
+    public static func == (a: ZarboWidgetSDK.Archive.ArchiveError, b: ZarboWidgetSDK.Archive.ArchiveError) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public enum AccessMode : Swift.UInt {
+    case create
+    case read
+    case update
+    public init?(rawValue: Swift.UInt)
+    public typealias RawValue = Swift.UInt
+    public var rawValue: Swift.UInt {
+      get
+    }
+  }
+  final public let url: Foundation.URL
+  final public let accessMode: ZarboWidgetSDK.Archive.AccessMode
+  public init(url: Foundation.URL, accessMode mode: ZarboWidgetSDK.Archive.AccessMode, pathEncoding: Swift.String.Encoding? = nil) throws
+  public init(data: Foundation.Data = Data(), accessMode mode: ZarboWidgetSDK.Archive.AccessMode, pathEncoding: Swift.String.Encoding? = nil) throws
+  @objc deinit
+  final public func makeIterator() -> Swift.AnyIterator<ZarboWidgetSDK.Entry>
+  final public subscript(path: Swift.String) -> ZarboWidgetSDK.Entry? {
+    get
+  }
+  public typealias Element = ZarboWidgetSDK.Entry
+  public typealias Iterator = Swift.AnyIterator<ZarboWidgetSDK.Entry>
+}
+extension ZarboWidgetSDK.Archive {
+  @available(*, deprecated, message: "Please use `Int` for `bufferSize`.")
+  final public func extract(_ entry: ZarboWidgetSDK.Entry, to url: Foundation.URL, bufferSize: Swift.UInt32, skipCRC32: Swift.Bool = false, progress: Foundation.Progress? = nil) throws -> ZarboWidgetSDK.CRC32
+  @available(*, deprecated, message: "Please use `Int` for `bufferSize`.")
+  final public func extract(_ entry: ZarboWidgetSDK.Entry, bufferSize: Swift.UInt32, skipCRC32: Swift.Bool = false, progress: Foundation.Progress? = nil, consumer: (_ data: Foundation.Data) throws -> Swift.Void) throws -> ZarboWidgetSDK.CRC32
+}
+extension ZarboWidgetSDK.Archive {
+  final public func extract(_ entry: ZarboWidgetSDK.Entry, to url: Foundation.URL, bufferSize: Swift.Int = defaultReadChunkSize, skipCRC32: Swift.Bool = false, allowUncontainedSymlinks: Swift.Bool = false, progress: Foundation.Progress? = nil) throws -> ZarboWidgetSDK.CRC32
+  final public func extract(_ entry: ZarboWidgetSDK.Entry, bufferSize: Swift.Int = defaultReadChunkSize, skipCRC32: Swift.Bool = false, progress: Foundation.Progress? = nil, consumer: (_ data: Foundation.Data) throws -> Swift.Void) throws -> ZarboWidgetSDK.CRC32
+}
+public struct Entry : Swift.Equatable {
+  public enum EntryType : Swift.Int {
+    case file
+    case directory
+    case symlink
+    public init?(rawValue: Swift.Int)
+    public typealias RawValue = Swift.Int
+    public var rawValue: Swift.Int {
+      get
+    }
+  }
+  public func path(using encoding: Swift.String.Encoding) -> Swift.String
+  public var path: Swift.String {
+    get
+  }
+  public var fileAttributes: [Foundation.FileAttributeKey : Any] {
+    get
+  }
+  public var checksum: ZarboWidgetSDK.CRC32 {
+    get
+  }
+  public var type: ZarboWidgetSDK.Entry.EntryType {
+    get
+  }
+  public var isCompressed: Swift.Bool {
+    get
+  }
+  public var compressedSize: Swift.UInt64 {
+    get
+  }
+  public var uncompressedSize: Swift.UInt64 {
+    get
+  }
+  public static func == (lhs: ZarboWidgetSDK.Entry, rhs: ZarboWidgetSDK.Entry) -> Swift.Bool
+}
+public enum CompressionMethod : Swift.UInt16 {
+  case none
+  case deflate
+  public init?(rawValue: Swift.UInt16)
+  public typealias RawValue = Swift.UInt16
+  public var rawValue: Swift.UInt16 {
+    get
+  }
+}
+public typealias CRC32 = Swift.UInt32
+public typealias Consumer = (_ data: Foundation.Data) throws -> Swift.Void
+public typealias Provider = (_ position: Swift.Int64, _ size: Swift.Int) throws -> Foundation.Data
+extension Foundation.Data {
+  public func crc32(checksum: ZarboWidgetSDK.CRC32) -> ZarboWidgetSDK.CRC32
+  public static func compress(size: Swift.Int64, bufferSize: Swift.Int, provider: (_ position: Swift.Int64, _ size: Swift.Int) throws -> Foundation.Data, consumer: (_ data: Foundation.Data) throws -> Swift.Void) throws -> ZarboWidgetSDK.CRC32
+  public static func decompress(size: Swift.Int64, bufferSize: Swift.Int, skipCRC32: Swift.Bool, provider: (_ position: Swift.Int64, _ size: Swift.Int) throws -> Foundation.Data, consumer: (_ data: Foundation.Data) throws -> Swift.Void) throws -> ZarboWidgetSDK.CRC32
+}
+extension ZarboWidgetSDK.Archive {
+  @available(*, deprecated, message: "Please use the throwing initializer.")
+  convenience public init?(url: Foundation.URL, accessMode mode: ZarboWidgetSDK.Archive.AccessMode, preferredEncoding: Swift.String.Encoding? = nil)
+  @available(*, deprecated, message: "Please use the throwing initializer.")
+  convenience public init?(data: Foundation.Data = Data(), accessMode mode: ZarboWidgetSDK.Archive.AccessMode, preferredEncoding: Swift.String.Encoding? = nil)
+}
+extension ZarboWidgetSDK.ZarboSDK {
+  public struct ZWWidget {
+    public var model: ZarboWidgetSDK.ZarboSDK.ZWMWidget
+    public init(model: ZarboWidgetSDK.ZarboSDK.ZWMWidget, directoryUrl: Foundation.URL)
+  }
+}
+
+extension ZarboWidgetSDK.ZarboSDK {
+  public struct ZWMWidget : Swift.Decodable {
+    public let type: ZarboWidgetSDK.ZarboSDK.ZWMWidget.ZWMWidgetType
+    public let version: Swift.String
+    public let uuid: Swift.String
+    public var product: ZarboWidgetSDK.ZarboSDK.ZWMWidget.ZWMProduct
+    public var title: Swift.String?
+    public var urlToShare: Foundation.URL?
+    public init(title: Swift.String?, urlToShare: Foundation.URL? = nil, usdzModelURL: Foundation.URL)
+    public init(from decoder: any Swift.Decoder) throws
+  }
+}
+extension ZarboWidgetSDK.ZarboSDK.ZWMWidget {
+  public struct ZWMProduct : Swift.Decodable {
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public enum ZWPlacement : Swift.String, Swift.Decodable {
+    case floor, wall
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public struct ZWModel : Swift.Decodable {
+    public init(from decoder: any Swift.Decoder) throws
+  }
+  public enum ZWPlatform : Swift.String, Swift.Decodable {
+    case iOS, android
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum ZWFormat : Swift.String, Swift.Decodable {
+    case usdz, glb
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  public enum ZWMWidgetType : Swift.String, Swift.Decodable {
+    case zarbo
+    public init?(rawValue: Swift.String)
+    public typealias RawValue = Swift.String
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+}
+extension ZarboWidgetSDK.ZarboSDK {
+  public enum ZarboPreview {
+    case qlPreview
+    case zarbo
+    public static func == (a: ZarboWidgetSDK.ZarboSDK.ZarboPreview, b: ZarboWidgetSDK.ZarboSDK.ZarboPreview) -> Swift.Bool
+    public func hash(into hasher: inout Swift.Hasher)
+    public var hashValue: Swift.Int {
+      get
+    }
+  }
+  public struct ZarboConfiguration {
+    public init(apiKey: Swift.String, host: Swift.String, playerType: ZarboWidgetSDK.ZarboSDK.ZarboPreview = .zarbo)
+  }
+}
+extension Foundation.Data.DataError : Swift.Equatable {}
+extension Foundation.Data.DataError : Swift.Hashable {}
+extension ZarboWidgetSDK.Archive.ArchiveError : Swift.Equatable {}
+extension ZarboWidgetSDK.Archive.ArchiveError : Swift.Hashable {}
+extension ZarboWidgetSDK.Archive.AccessMode : Swift.Equatable {}
+extension ZarboWidgetSDK.Archive.AccessMode : Swift.Hashable {}
+extension ZarboWidgetSDK.Archive.AccessMode : Swift.RawRepresentable {}
+extension ZarboWidgetSDK.Entry.EntryType : Swift.Equatable {}
+extension ZarboWidgetSDK.Entry.EntryType : Swift.Hashable {}
+extension ZarboWidgetSDK.Entry.EntryType : Swift.RawRepresentable {}
+extension ZarboWidgetSDK.CompressionMethod : Swift.Equatable {}
+extension ZarboWidgetSDK.CompressionMethod : Swift.Hashable {}
+extension ZarboWidgetSDK.CompressionMethod : Swift.RawRepresentable {}
+extension ZarboWidgetSDK.ZarboSDK.ZWMWidget.ZWPlacement : Swift.Equatable {}
+extension ZarboWidgetSDK.ZarboSDK.ZWMWidget.ZWPlacement : Swift.Hashable {}
+extension ZarboWidgetSDK.ZarboSDK.ZWMWidget.ZWPlacement : Swift.RawRepresentable {}
+extension ZarboWidgetSDK.ZarboSDK.ZWMWidget.ZWPlatform : Swift.Equatable {}
+extension ZarboWidgetSDK.ZarboSDK.ZWMWidget.ZWPlatform : Swift.Hashable {}
+extension ZarboWidgetSDK.ZarboSDK.ZWMWidget.ZWPlatform : Swift.RawRepresentable {}
+extension ZarboWidgetSDK.ZarboSDK.ZWMWidget.ZWFormat : Swift.Equatable {}
+extension ZarboWidgetSDK.ZarboSDK.ZWMWidget.ZWFormat : Swift.Hashable {}
+extension ZarboWidgetSDK.ZarboSDK.ZWMWidget.ZWFormat : Swift.RawRepresentable {}
+extension ZarboWidgetSDK.ZarboSDK.ZWMWidget.ZWMWidgetType : Swift.Equatable {}
+extension ZarboWidgetSDK.ZarboSDK.ZWMWidget.ZWMWidgetType : Swift.Hashable {}
+extension ZarboWidgetSDK.ZarboSDK.ZWMWidget.ZWMWidgetType : Swift.RawRepresentable {}
+extension ZarboWidgetSDK.ZarboSDK.ZarboPreview : Swift.Equatable {}
+extension ZarboWidgetSDK.ZarboSDK.ZarboPreview : Swift.Hashable {}

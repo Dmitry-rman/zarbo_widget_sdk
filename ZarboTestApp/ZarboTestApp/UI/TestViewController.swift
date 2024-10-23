@@ -61,13 +61,13 @@ final class TestViewController: UIViewController {
         
         DispatchQueue.global(qos: .utility).async {
             do {
-                var widget = try ZarboWidgetSDK.getWidget(data: packetData)
+                var widget = try ZarboSDK.getWidget(data: packetData)
                 widget.model.title = "Новая модель"
                 widget.model.urlToShare = URL.init(string: "https://embed.zarbo.tech/82e606a0-07c0-4417-9a7d-733d789150c4/6461")
                 
                 DispatchQueue.main.async { [weak self] in
                     guard let self else { return }
-                    let status = ZarboWidgetSDK.showPackage(widget: widget, on: self)
+                    let status = ZarboSDK.showPackage(widget: widget, on: self)
                     self.processStatus(status)
                 }
             } catch {
@@ -91,7 +91,11 @@ final class TestViewController: UIViewController {
         }
         
         hideKeyboard()
-        let status = ZarboWidgetSDK.showPackage(data: packetData, on: self)
+        let status = ZarboSDK.showPackage(
+            data: packetData,
+            on: self,
+            onCompleted: processCompletion(_ :)
+        )
         processStatus(status)
     }
     
@@ -117,7 +121,7 @@ final class TestViewController: UIViewController {
         hideKeyboard()
         
         let url: URL = Bundle.main.url(forResource: "banya_38a13", withExtension: "usdz")!
-        let status = ZarboWidgetSDK.showPackage(
+        let status = ZarboSDK.showPackage(
             modelUrl: url,
             urlToShare: URL.init(string: "https://embed.zarbo.tech/82e606a0-07c0-4417-9a7d-733d789150c4/6461"),
             title: "Баня",
@@ -212,35 +216,36 @@ final class TestViewController: UIViewController {
         let modelSKU = skuTextField.text ?? ""
         dataStorage.sku = modelSKU
         
-        let status = ZarboWidgetSDK.showPackage(
+        let status = ZarboSDK.showPackage(
             sku: modelSKU,
             on: self,
-            onProgress: { [weak self] progress in
-            self?.changeProgress(progress)
-        }, onCompleted: { [weak self] result in
-            guard let self else { return }
-            self.hideLoader()
-
-            switch (result) {
-            case .error(let error):
-                let errorText = error.localizedDescription
-                self.showError(errorText)
-                self.setStatus("Ошибка")
-            case .cancelled:
-                self.setStatus("Отменено")
-            case .success:
-                self.setStatus("Успешный показ")
-            @unknown default:
-                self.setStatus("Неизвестный статус")
-            }
-
-            self.actionButton.setTitle(NSLocalizedString("Try it on", comment: ""), for: .normal)
-        })
+            onProgress: changeProgress(_ :),
+            onCompleted: processCompletion(_ :)
+        )
         
         processStatus(status)
     }
     
-    private func processStatus(_ status: ZarboWidgetSDK.ZWMStatus) {
+    private func processCompletion(_ compeltion: ZarboSDK.ZarboCompletion) {
+        self.hideLoader()
+
+        switch (compeltion) {
+        case .error(let error):
+            let errorText = error.localizedDescription
+            self.showError(errorText)
+            self.setStatus("Ошибка")
+        case .cancelled:
+            self.setStatus("Отменено")
+        case .success:
+            self.setStatus("Успешный показ")
+        @unknown default:
+            self.setStatus("Неизвестный статус")
+        }
+
+        self.actionButton.setTitle(NSLocalizedString("Try it on", comment: ""), for: .normal)
+    }
+    
+    private func processStatus(_ status: ZarboSDK.ZWMStatus) {
         
         switch status {
         case .arIsNotSupported:
@@ -249,7 +254,6 @@ final class TestViewController: UIViewController {
             self.setStatus("Показ ZarboWidget")
         case .start:
             self.setStatus("Запуск ZarboWidget")
-            self.showLoader()
             self.actionButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
         case .sdkIsNotConfigured:
             self.showError("ZarboWidgetSDK не сконфигурирован!")
@@ -346,14 +350,18 @@ extension TestViewController: URLSessionDownloadDelegate {
                 self.setStatus("Завершено скачивание")
 
                 do {
-                    let status: ZarboWidgetSDK.ZWMStatus
+                    let status: ZarboSDK.ZWMStatus
                     
                     switch fileType {
                     case .packetFile:
                         let data = try Data.init(contentsOf: url)
-                        status = ZarboWidgetSDK.showPackage(data: data, on: self)
+                        status = ZarboSDK.showPackage(
+                            data: data,
+                            on: self,
+                            onCompleted: processCompletion(_ :)
+                        )
                     case .usdzFile:
-                        status = ZarboWidgetSDK.showPackage(modelUrl: url, on: self)
+                        status = ZarboSDK.showPackage(modelUrl: url, on: self)
                     }
                     
                     self.processStatus(status)

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A26E0B12CA2C50500B45340 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A26E0AF2CA2C50500B45340 /* LaunchScreen.storyboard */; };
+		0A46CD312CC8F9E800441863 /* banya_38a13.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 0A46CD2F2CC8F9E800441863 /* banya_38a13.usdz */; };
+		0A46CD322CC8F9E800441863 /* chair.zwb in Resources */ = {isa = PBXBuildFile; fileRef = 0A46CD302CC8F9E800441863 /* chair.zwb */; };
 		0A59D8F32C99A5D000F3952B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59D8F22C99A5D000F3952B /* AppDelegate.swift */; };
 		0A59D8F52C99A5D000F3952B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A59D8F42C99A5D000F3952B /* SceneDelegate.swift */; };
 		0A59D8FC2C99A5D200F3952B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A59D8FB2C99A5D200F3952B /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 		0A26E0B02CA2C50500B45340 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0A26E0B22CA2C51B00B45340 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
 		0A26E0B32CA2C52000B45340 /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
+		0A46CD2F2CC8F9E800441863 /* banya_38a13.usdz */ = {isa = PBXFileReference; lastKnownFileType = file; path = banya_38a13.usdz; sourceTree = "<group>"; };
+		0A46CD302CC8F9E800441863 /* chair.zwb */ = {isa = PBXFileReference; lastKnownFileType = file; path = chair.zwb; sourceTree = "<group>"; };
 		0A59D8EF2C99A5D000F3952B /* ZarboTestApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ZarboTestApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A59D8F22C99A5D000F3952B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0A59D8F42C99A5D000F3952B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -125,6 +129,8 @@
 				0A59D8F42C99A5D000F3952B /* SceneDelegate.swift */,
 				0A26E0AF2CA2C50500B45340 /* LaunchScreen.storyboard */,
 				0A59D8F22C99A5D000F3952B /* AppDelegate.swift */,
+				0A46CD2F2CC8F9E800441863 /* banya_38a13.usdz */,
+				0A46CD302CC8F9E800441863 /* chair.zwb */,
 				0A59D8FB2C99A5D200F3952B /* Assets.xcassets */,
 				0A59D9002C99A5D200F3952B /* Info.plist */,
 			);
@@ -194,6 +200,8 @@
 				0A59D8FC2C99A5D200F3952B /* Assets.xcassets in Resources */,
 				0A26E0B12CA2C50500B45340 /* LaunchScreen.storyboard in Resources */,
 				0AF88CB12C9DA72400851602 /* Main.storyboard in Resources */,
+				0A46CD312CC8F9E800441863 /* banya_38a13.usdz in Resources */,
+				0A46CD322CC8F9E800441863 /* chair.zwb in Resources */,
 				0AF88CB02C9DA6E000851602 /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

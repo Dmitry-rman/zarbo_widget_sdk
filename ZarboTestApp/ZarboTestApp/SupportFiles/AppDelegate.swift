@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        Zarbo.configuration = .init(apiKey: ZARBO_API_KEY, host: ZARBO_HOST)
+        ZarboSDK.configuration = .init(apiKey: ZARBO_API_KEY, host: ZARBO_HOST, playerType: .zarbo)
         
         return true
     }

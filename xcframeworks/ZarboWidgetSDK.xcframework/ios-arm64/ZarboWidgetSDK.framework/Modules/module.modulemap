@@ -1,0 +1,4 @@
+framework module ZarboWidgetSDK {
+  header "ZarboWidgetSDK-Swift.h"
+  requires objc
+}
