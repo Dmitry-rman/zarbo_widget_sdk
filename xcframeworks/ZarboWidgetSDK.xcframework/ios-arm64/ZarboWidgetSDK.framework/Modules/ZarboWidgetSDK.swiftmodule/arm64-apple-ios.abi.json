@@ -356,8 +356,8 @@
           },
           {
             "kind": "Function",
-            "name": "showPackage",
-            "printedName": "showPackage(modelUrl:urlToShare:title:on:)",
+            "name": "showUSDZ",
+            "printedName": "showUSDZ(modelUrl:urlToShare:title:on:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -409,8 +409,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14ZarboWidgetSDK0aC0C11showPackage8modelUrl10urlToShare5title2onAC9ZWMStatusO10Foundation3URLV_AMSgSSSgSo16UIViewControllerCtFZ",
-            "mangledName": "$s14ZarboWidgetSDK0aC0C11showPackage8modelUrl10urlToShare5title2onAC9ZWMStatusO10Foundation3URLV_AMSgSSSgSo16UIViewControllerCtFZ",
+            "usr": "s:14ZarboWidgetSDK0aC0C8showUSDZ8modelUrl10urlToShare5title2onAC9ZWMStatusO10Foundation3URLV_AMSgSSSgSo16UIViewControllerCtFZ",
+            "mangledName": "$s14ZarboWidgetSDK0aC0C8showUSDZ8modelUrl10urlToShare5title2onAC9ZWMStatusO10Foundation3URLV_AMSgSSSgSo16UIViewControllerCtFZ",
             "moduleName": "ZarboWidgetSDK",
             "static": true,
             "declAttributes": [
@@ -423,8 +423,8 @@
           },
           {
             "kind": "Function",
-            "name": "showPackage",
-            "printedName": "showPackage(modelUrl:urlToShare:title:on:)",
+            "name": "showUSDZ",
+            "printedName": "showUSDZ(modelUrl:urlToShare:title:on:)",
             "children": [
               {
                 "kind": "TypeNominal",
@@ -476,8 +476,8 @@
               }
             ],
             "declKind": "Func",
-            "usr": "s:14ZarboWidgetSDK0aC0C11showPackage8modelUrl10urlToShare5title2onAC9ZWMStatusO10Foundation3URLV_AMSgSSSgSo16UIViewControllerCtF",
-            "mangledName": "$s14ZarboWidgetSDK0aC0C11showPackage8modelUrl10urlToShare5title2onAC9ZWMStatusO10Foundation3URLV_AMSgSSSgSo16UIViewControllerCtF",
+            "usr": "s:14ZarboWidgetSDK0aC0C8showUSDZ8modelUrl10urlToShare5title2onAC9ZWMStatusO10Foundation3URLV_AMSgSSSgSo16UIViewControllerCtF",
+            "mangledName": "$s14ZarboWidgetSDK0aC0C8showUSDZ8modelUrl10urlToShare5title2onAC9ZWMStatusO10Foundation3URLV_AMSgSSSgSo16UIViewControllerCtF",
             "moduleName": "ZarboWidgetSDK",
             "declAttributes": [
               "Final",
@@ -9322,7 +9322,7 @@
     {
       "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboUIController.swift",
       "kind": "BooleanLiteral",
-      "offset": 855,
+      "offset": 996,
       "length": 5,
       "value": "false"
     },
@@ -9336,70 +9336,70 @@
     {
       "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
       "kind": "StringLiteral",
-      "offset": 4970,
+      "offset": 5102,
       "length": 53,
       "value": "\"Не удалось загрузить модель\""
     },
     {
       "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
       "kind": "IntegerLiteral",
-      "offset": 5179,
+      "offset": 5311,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
       "kind": "IntegerLiteral",
-      "offset": 5193,
+      "offset": 5325,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
       "kind": "IntegerLiteral",
-      "offset": 5207,
+      "offset": 5339,
       "length": 1,
       "value": "1"
     },
     {
       "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
       "kind": "IntegerLiteral",
-      "offset": 5318,
+      "offset": 5450,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
       "kind": "IntegerLiteral",
-      "offset": 5684,
+      "offset": 5816,
       "length": 4,
       "value": "1000"
     },
     {
       "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
       "kind": "IntegerLiteral",
-      "offset": 5732,
+      "offset": 5864,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
       "kind": "IntegerLiteral",
-      "offset": 5738,
+      "offset": 5870,
       "length": 2,
       "value": "10"
     },
     {
       "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
       "kind": "IntegerLiteral",
-      "offset": 5745,
+      "offset": 5877,
       "length": 2,
       "value": "10"
     },
     {
       "filePath": "\/Users\/dmitry\/Documents\/projects\/zarbo\/zarbo-widget-sdk-ios\/SDK\/ZarboWidgetSDK\/Sources\/UI\/ZarboPreviewViewController\/ARSCNViewController.swift",
       "kind": "BooleanLiteral",
-      "offset": 5965,
+      "offset": 6097,
       "length": 5,
       "value": "false"
     },

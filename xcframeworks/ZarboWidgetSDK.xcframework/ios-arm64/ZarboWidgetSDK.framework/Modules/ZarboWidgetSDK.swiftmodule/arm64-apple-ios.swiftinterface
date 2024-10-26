@@ -29,8 +29,8 @@ final public class ZarboSDK {
   public static func getWidget(data: Foundation.Data) throws -> ZarboWidgetSDK.ZarboSDK.ZWWidget
   final public func getWidget(data: Foundation.Data) throws -> ZarboWidgetSDK.ZarboSDK.ZWWidget
   @_Concurrency.MainActor public static func showPackage(widget: ZarboWidgetSDK.ZarboSDK.ZWWidget, on viewController: UIKit.UIViewController) -> ZarboWidgetSDK.ZarboSDK.ZWMStatus
-  @_Concurrency.MainActor public static func showPackage(modelUrl: Foundation.URL, urlToShare: Foundation.URL? = nil, title: Swift.String? = nil, on viewController: UIKit.UIViewController) -> ZarboWidgetSDK.ZarboSDK.ZWMStatus
-  @_Concurrency.MainActor final public func showPackage(modelUrl: Foundation.URL, urlToShare: Foundation.URL? = nil, title: Swift.String? = nil, on viewController: UIKit.UIViewController) -> ZarboWidgetSDK.ZarboSDK.ZWMStatus
+  @_Concurrency.MainActor public static func showUSDZ(modelUrl: Foundation.URL, urlToShare: Foundation.URL? = nil, title: Swift.String? = nil, on viewController: UIKit.UIViewController) -> ZarboWidgetSDK.ZarboSDK.ZWMStatus
+  @_Concurrency.MainActor final public func showUSDZ(modelUrl: Foundation.URL, urlToShare: Foundation.URL? = nil, title: Swift.String? = nil, on viewController: UIKit.UIViewController) -> ZarboWidgetSDK.ZarboSDK.ZWMStatus
   public static func showPackage(data: Foundation.Data, on viewController: UIKit.UIViewController, onCompleted: @escaping (ZarboWidgetSDK.ZarboSDK.ZarboCompletion) -> Swift.Void) -> ZarboWidgetSDK.ZarboSDK.ZWMStatus
   public static func showPackage(sku: Swift.String, on viewController: UIKit.UIViewController, onProgress: @escaping (_ progress: Swift.Float) -> Swift.Void, onCompleted: @escaping (ZarboWidgetSDK.ZarboSDK.ZarboCompletion) -> Swift.Void) -> ZarboWidgetSDK.ZarboSDK.ZWMStatus
   public static func cancel()

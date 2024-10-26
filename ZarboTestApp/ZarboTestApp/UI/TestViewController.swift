@@ -121,7 +121,7 @@ final class TestViewController: UIViewController {
         hideKeyboard()
         
         let url: URL = Bundle.main.url(forResource: "banya_38a13", withExtension: "usdz")!
-        let status = ZarboSDK.showPackage(
+        let status = ZarboSDK.showUSDZ(
             modelUrl: url,
             urlToShare: URL.init(string: "https://embed.zarbo.tech/82e606a0-07c0-4417-9a7d-733d789150c4/6461"),
             title: "Баня",
@@ -361,7 +361,7 @@ extension TestViewController: URLSessionDownloadDelegate {
                             onCompleted: processCompletion(_ :)
                         )
                     case .usdzFile:
-                        status = ZarboSDK.showPackage(modelUrl: url, on: self)
+                        status = ZarboSDK.showUSDZ(modelUrl: url, on: self)
                     }
                     
                     self.processStatus(status)

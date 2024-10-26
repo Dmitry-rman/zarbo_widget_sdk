@@ -18,51 +18,51 @@
 		</data>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		GFVE8j7jo6A1CpzphgAjlf7u1oo=
+		Lfoi2zKhnHqVA3rFhV8WSPZkymU=
 		</data>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<data>
-		nRzykO8DExUinFAMZ7I2s8Q9TA4=
+		8ecstiFB7K7DeFW8YLGigmGjAqA=
 		</data>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<data>
-		ipE/W7Wjt18JIB/0+0oQH8mgZbc=
+		SUz0TVKOydnUPboy1Hd4tEROZnQ=
 		</data>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		o1VKfu5t+KlPA/Cg7lbC5jDWPb4=
+		EFOTbVO7rWmEpjpZH2umpTIu598=
 		</data>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		e12WKaTWzHwrmJOO1Iwink6mFvE=
+		dDjWQ6rZvyLK7e5n9H7MIgdqv74=
 		</data>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		o1VKfu5t+KlPA/Cg7lbC5jDWPb4=
+		EFOTbVO7rWmEpjpZH2umpTIu598=
 		</data>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		xTBn84RRVNGEvsh4N4r6Dvv905I=
+		/6WOeC//YwpbtUobTmEv3lFtsIQ=
 		</data>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<data>
-		ipE/W7Wjt18JIB/0+0oQH8mgZbc=
+		SUz0TVKOydnUPboy1Hd4tEROZnQ=
 		</data>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<data>
-		r3X5gYv+IN2g44Zi2Wr7uF3Bt/g=
+		oV+ca1/xDsV85t8SuWr8adUzTcg=
 		</data>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
-		F0q7E6FEzGqWX9SS17ZQFdtF4qw=
+		qdXhBe4WQCb+LMdgXDxwwU0IjNg=
 		</data>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		r3X5gYv+IN2g44Zi2Wr7uF3Bt/g=
+		oV+ca1/xDsV85t8SuWr8adUzTcg=
 		</data>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		R3IOlRVnCm7/u/K6ZTWh5ofkpT0=
+		/poEPVl2e0gGiFZA0MgSQfDfq64=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -80,7 +80,7 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			qu39A4Wr74mNiFOMoR50+1QbyA0=
+			s2lw75V/1D9Pxe5sgwxFfYlsotQ=
 			</data>
 			<key>optional</key>
 			<true/>
@@ -106,84 +106,84 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			gtNZraodQjBXZjJuJ88ulPvdDGR0oQwDRZ1o9bG4o7w=
+			EZqrq9F7zKI2smSf6JFrQC5HzL6iYahHkdqDFIB5RU4=
 			</data>
 		</dict>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/Project/x86_64-apple-ios-simulator.swiftsourceinfo</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			wkDok5kOEZnzIUuF3BvwGNDF5x5Yv54uGBeOa7TjEh4=
+			s8eBOYt11tt7Oz4LJyBVYNK72/CEmIt+iL4wh9SCceU=
 			</data>
 		</dict>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/arm64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			kFYz9glOtC3/uRWB1hmEGVW0lnItyHz0HPonnxzO2fk=
+			PSEN/HpzUHaJ1MZuFEmlU3fXlfvCBb6yzw9OcDdMgv8=
 			</data>
 		</dict>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/arm64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			402IT250TynqwxwdmROS8SLMiubCSxCVzwFc9pMDrjk=
+			YoIe9BQ7M2/Y62N+v0DZXKylkDOrXjtgYBY0zpsgToA=
 			</data>
 		</dict>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/arm64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			leOGZwp7eh8j78cR6lWmoWpV6SQy2XlfMXPyqszJLMo=
+			Y24HyW6YyU1dski6T3VVd4juMtVFp7eqygkKatBrEaU=
 			</data>
 		</dict>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			402IT250TynqwxwdmROS8SLMiubCSxCVzwFc9pMDrjk=
+			YoIe9BQ7M2/Y62N+v0DZXKylkDOrXjtgYBY0zpsgToA=
 			</data>
 		</dict>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			5SBGePurIv0RFCVuxU8UxaY2DXL7f+AfldYOED30Dmg=
+			u+QmqaVIkmF8G4n6vckKyugd+tl+6fuY8RL4bUPgAko=
 			</data>
 		</dict>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/x86_64-apple-ios-simulator.abi.json</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			kFYz9glOtC3/uRWB1hmEGVW0lnItyHz0HPonnxzO2fk=
+			PSEN/HpzUHaJ1MZuFEmlU3fXlfvCBb6yzw9OcDdMgv8=
 			</data>
 		</dict>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/x86_64-apple-ios-simulator.private.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			aQDT7rLhR32M2PYD/JzdOPn+2VRJxZSDTRK5q8/gqT4=
+			QQtlF0dmx19XccWk7l8Yd5E7zSq3Eh+IkxEOhU9AJlU=
 			</data>
 		</dict>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			c+9CMRdZt5L+jtzkBaokFdjKTU0Eak6aeOrF3+p3nBc=
+			w5CxRy2wR/NeQHIAu/V72NZAchUlJ2TURgfwgy+e0uA=
 			</data>
 		</dict>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			aQDT7rLhR32M2PYD/JzdOPn+2VRJxZSDTRK5q8/gqT4=
+			QQtlF0dmx19XccWk7l8Yd5E7zSq3Eh+IkxEOhU9AJlU=
 			</data>
 		</dict>
 		<key>Modules/ZarboWidgetSDK.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			Ezp5kYoEql5WkIFsaJYlkAy2KlFl/xIATx5ejXFF7Qw=
+			2YpMHG+yl8P4gQIOFhVjy5NMVTgj6uIuJF+oZfmpuyg=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>
@@ -211,7 +211,7 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			mL7sxLYKC88HpPL+QJDVZi1A2bhjYKR2uJLv0+h/FXY=
+			WC3pEAE4ohdHSdwgDHHdTb7AHk8ro6+xMLkGLre4fCw=
 			</data>
 			<key>optional</key>
 			<true/>
