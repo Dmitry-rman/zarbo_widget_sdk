@@ -17,6 +17,7 @@ final class TestViewController: UIViewController {
     @IBOutlet weak var loaderView: UIActivityIndicatorView!
     @IBOutlet weak var actionButton: UIButton!
     @IBOutlet weak var dismissButton: UIButton!
+    @IBOutlet weak var cancelButton: UIButton!
     
     private var dataStorage: IDataStorage = DataStorage()
     private var packetDownloadFileTask: URLSessionDownloadTask?
@@ -100,24 +101,39 @@ final class TestViewController: UIViewController {
     }
     
     @IBAction
-    func showUsdzFromUrl(_ sender: Any) {
-        guard let text = usdzUrlTextField.text,
-              let url: URL = URL.init(string: text) else {
-            self.showError("Неправильный URL usdz файла")
-            return
-        }
-        
-        hideKeyboard()
-        showLoader()
-        setStatus("Скачивание")
-        
-        dataStorage.usdzUrl = url.absoluteString
-        usdzDownloadFileTask = urlSession.downloadTask(with: url)
-        usdzDownloadFileTask?.resume()
+    func cancelButtonTap(_ sender: Any) {
+        ZarboSDK.cancel()
+        usdzDownloadFileTask?.cancel()
+        packetDownloadFileTask?.cancel()
+        hideLoader()
+        self.setStatus("Отменено")
     }
     
     @IBAction
-    func showUsdz(_ sender: Any) {
+    func showUsdzFromUrlButtonTap(_ sender: Any) {
+        if loaderView.isAnimating {
+            usdzDownloadFileTask?.cancel()
+            hideLoader()
+        } else {
+            guard let text = usdzUrlTextField.text,
+                  let url: URL = URL.init(string: text) else {
+                self.showError("Неправильный URL usdz файла")
+                return
+            }
+            
+            hideKeyboard()
+            showLoader()
+            cancelButton.isHidden = false
+            setStatus("Скачивание")
+            
+            dataStorage.usdzUrl = url.absoluteString
+            usdzDownloadFileTask = urlSession.downloadTask(with: url)
+            usdzDownloadFileTask?.resume()
+        }
+    }
+    
+    @IBAction
+    func showUsdzButtonTap(_ sender: Any) {
         hideKeyboard()
         
         let url: URL = Bundle.main.url(forResource: "banya_38a13", withExtension: "usdz")!
@@ -132,28 +148,50 @@ final class TestViewController: UIViewController {
     }
     
     @IBAction
-    func showPackageFromUrl(_ sender: Any) {
-        guard let text = packageUrlTextField.text,
-              let url: URL = .init(string: text) else {
-            self.showError("Неправильный URL пакета")
-            return
+    func showPackageFromUrlButtonTap(_ sender: Any) {
+        if loaderView.isAnimating {
+            packetDownloadFileTask?.cancel()
+            hideLoader()
+        } else {
+            
+            guard let text = packageUrlTextField.text,
+                  let url: URL = .init(string: text) else {
+                self.showError("Неправильный URL пакета")
+                return
+            }
+            
+            hideKeyboard()
+            showLoader()
+            cancelButton.isHidden = false
+            setStatus("Скачивание")
+            
+            dataStorage.packetUrl = url.absoluteString
+            packetDownloadFileTask = urlSession.downloadTask(with: url)
+            packetDownloadFileTask?.resume()
         }
-        
-        hideKeyboard()
-        showLoader()
-        setStatus("Скачивание")
-        
-        dataStorage.packetUrl = url.absoluteString
-        packetDownloadFileTask = urlSession.downloadTask(with: url)
-        packetDownloadFileTask?.resume()
     }
 
     @IBAction
-    func searchActionButtonTap(_ sender: Any) {
+    func searchBySKUButtonTap(_ sender: Any) {
         if loaderView.isAnimating {
-            cancelAction()
+            ZarboSDK.cancel()
+            hideLoader()
         } else {
-            searchAction()
+            hideKeyboard()
+            cancelButton.isHidden = false
+            
+            let modelSKU = skuTextField.text ?? ""
+            dataStorage.sku = modelSKU
+            showLoader()
+            
+            let status = ZarboSDK.showPackage(
+                sku: modelSKU,
+                on: self,
+                onProgress: changeProgress(_ :),
+                onCompleted: processCompletion(_ :)
+            )
+            
+            processStatus(status)
         }
     }
     
@@ -172,12 +210,6 @@ final class TestViewController: UIViewController {
     }
     
     @MainActor
-    private func cancelAction() {
-        packetDownloadFileTask?.cancel()
-        usdzDownloadFileTask?.cancel()
-    }
-    
-    @MainActor
     private func showError(_ message: String) {
         let alertController = UIAlertController.init(
             title: NSLocalizedString("Error", comment: ""),
@@ -191,13 +223,14 @@ final class TestViewController: UIViewController {
     
     @MainActor
     private func showLoader() {
-        loaderView?.startAnimating()
+        loaderView.startAnimating()
         changeProgress(0)
     }
     
     @MainActor
     private func hideLoader() {
-        loaderView?.stopAnimating()
+        loaderView.stopAnimating()
+        cancelButton.isHidden = true
     }
     
     @MainActor
@@ -207,23 +240,6 @@ final class TestViewController: UIViewController {
             let format = NSLocalizedString("Downloading %d", comment: "")
             setStatus(String.localizedStringWithFormat(format, percent) + "%")
         }
-    }
-    
-    private func searchAction() {
-        
-        hideKeyboard()
-        
-        let modelSKU = skuTextField.text ?? ""
-        dataStorage.sku = modelSKU
-        
-        let status = ZarboSDK.showPackage(
-            sku: modelSKU,
-            on: self,
-            onProgress: changeProgress(_ :),
-            onCompleted: processCompletion(_ :)
-        )
-        
-        processStatus(status)
     }
     
     private func processCompletion(_ compeltion: ZarboSDK.ZarboCompletion) {
@@ -241,8 +257,6 @@ final class TestViewController: UIViewController {
         @unknown default:
             self.setStatus("Неизвестный статус")
         }
-
-        self.actionButton.setTitle(NSLocalizedString("Try it on", comment: ""), for: .normal)
     }
     
     private func processStatus(_ status: ZarboSDK.ZWMStatus) {
@@ -254,7 +268,6 @@ final class TestViewController: UIViewController {
             self.setStatus("Показ ZarboWidget")
         case .start:
             self.setStatus("Запуск ZarboWidget")
-            self.actionButton.setTitle(NSLocalizedString("Cancel", comment: ""), for: .normal)
         case .sdkIsNotConfigured:
             self.showError("ZarboWidgetSDK не сконфигурирован!")
         case .error(let error):
@@ -393,9 +406,13 @@ extension TestViewController: URLSessionDownloadDelegate {
         task: URLSessionTask,
         didCompleteWithError error: Error?
     ) {
-        if let error {
-            showError(error.localizedDescription)
-            setStatus("Ошибка")
+        DispatchQueue.main.async { [weak self] in
+            if let error = error as? URLError, error.code == .cancelled {
+                self?.setStatus("Отменено")
+            } else if let error {
+                self?.showError(error.localizedDescription)
+                self?.setStatus("Ошибка")
+            }
         }
     }
 }

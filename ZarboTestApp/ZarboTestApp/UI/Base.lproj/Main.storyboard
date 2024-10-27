@@ -54,7 +54,7 @@
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
                                                 <connections>
-                                                    <action selector="searchActionButtonTap:" destination="JsT-3t-q1A" eventType="touchUpInside" id="oEp-qP-a0v"/>
+                                                    <action selector="searchBySKUButtonTap:" destination="JsT-3t-q1A" eventType="touchUpInside" id="oEp-qP-a0v"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -88,7 +88,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Show package"/>
                                                 <connections>
-                                                    <action selector="showPackageFromUrl:" destination="JsT-3t-q1A" eventType="touchUpInside" id="M2G-Ls-VQF"/>
+                                                    <action selector="showPackageFromUrlButtonTap:" destination="JsT-3t-q1A" eventType="touchUpInside" id="M2G-Ls-VQF"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -122,7 +122,7 @@
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="plain" title="Show usdz"/>
                                                 <connections>
-                                                    <action selector="showUsdzFromUrl:" destination="JsT-3t-q1A" eventType="touchUpInside" id="caw-sZ-R3E"/>
+                                                    <action selector="showUsdzFromUrlButtonTap:" destination="JsT-3t-q1A" eventType="touchUpInside" id="caw-sZ-R3E"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -148,7 +148,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Show local usdz"/>
                                         <connections>
-                                            <action selector="showUsdz:" destination="JsT-3t-q1A" eventType="touchUpInside" id="leD-ej-jm9"/>
+                                            <action selector="showUsdzButtonTap:" destination="JsT-3t-q1A" eventType="touchUpInside" id="leD-ej-jm9"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VAz-YW-idp">
@@ -187,6 +187,14 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ClU-TW-6bb">
+                                <rect key="frame" x="169" y="519" width="76.5" height="34.5"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Cancel"/>
+                                <connections>
+                                    <action selector="cancelButtonTap:" destination="JsT-3t-q1A" eventType="touchUpInside" id="GJ5-w6-raP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gcm-Nm-nRV"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -195,11 +203,13 @@
                             <constraint firstItem="ZpF-mw-pzl" firstAttribute="centerX" secondItem="dN1-wE-bH8" secondAttribute="centerX" id="F7o-1z-qs2"/>
                             <constraint firstItem="gcm-Nm-nRV" firstAttribute="trailing" secondItem="osh-Qv-w2J" secondAttribute="trailing" constant="24" id="MNE-AU-0FJ"/>
                             <constraint firstItem="osh-Qv-w2J" firstAttribute="leading" secondItem="gcm-Nm-nRV" secondAttribute="leading" constant="24" id="MUY-Re-O7L"/>
+                            <constraint firstItem="ClU-TW-6bb" firstAttribute="centerX" secondItem="dN1-wE-bH8" secondAttribute="centerX" id="PX7-cL-kHj"/>
                             <constraint firstItem="gcm-Nm-nRV" firstAttribute="trailing" secondItem="Lib-mE-ja6" secondAttribute="trailing" constant="24" id="Pph-XX-WL6"/>
                             <constraint firstItem="gcm-Nm-nRV" firstAttribute="bottom" secondItem="osh-Qv-w2J" secondAttribute="bottom" constant="24" id="aLy-51-a8u"/>
                             <constraint firstItem="gcm-Nm-nRV" firstAttribute="trailing" secondItem="tJK-Qc-KUP" secondAttribute="trailing" constant="24" id="eQ7-mo-Sxb"/>
                             <constraint firstItem="tJK-Qc-KUP" firstAttribute="leading" secondItem="gcm-Nm-nRV" secondAttribute="leading" constant="24" id="et3-vE-skK"/>
                             <constraint firstItem="tJK-Qc-KUP" firstAttribute="top" secondItem="gcm-Nm-nRV" secondAttribute="top" constant="24" id="fml-ee-66g"/>
+                            <constraint firstItem="ClU-TW-6bb" firstAttribute="top" secondItem="Lib-mE-ja6" secondAttribute="bottom" constant="16" id="gf0-0G-mPf"/>
                             <constraint firstItem="Lib-mE-ja6" firstAttribute="top" secondItem="ZpF-mw-pzl" secondAttribute="bottom" constant="16" id="n8W-Kh-y8o"/>
                             <constraint firstItem="ZpF-mw-pzl" firstAttribute="centerY" secondItem="dN1-wE-bH8" secondAttribute="centerY" id="zIj-jA-nZL"/>
                         </constraints>
@@ -208,6 +218,7 @@
                     <navigationItem key="navigationItem" id="V2t-uc-zR0"/>
                     <connections>
                         <outlet property="actionButton" destination="bXQ-bu-l8l" id="rFs-Y7-DY4"/>
+                        <outlet property="cancelButton" destination="ClU-TW-6bb" id="Wvk-ZR-po3"/>
                         <outlet property="dismissButton" destination="EoZ-Zn-V5L" id="d2U-tM-RRK"/>
                         <outlet property="loaderView" destination="ZpF-mw-pzl" id="bfS-Vc-yGV"/>
                         <outlet property="packageUrlTextField" destination="989-Af-DT8" id="af0-Nr-ONX"/>
@@ -275,14 +286,14 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="Rx2-YS-nxz">
-                                        <rect key="frame" x="0.0" y="93.5" width="414" height="44.5"/>
+                                        <rect key="frame" x="0.0" y="93.5" width="414" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Rx2-YS-nxz" id="qVX-5L-cVk">
-                                            <rect key="frame" x="0.0" y="0.0" width="383.5" height="44.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383.5" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Modal presentation" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UHL-o5-6uv">
-                                                    <rect key="frame" x="44" y="11" width="307.5" height="22"/>
+                                                    <rect key="frame" x="44" y="11" width="307.5" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -300,7 +311,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="k8J-L2-Oao">
-                                        <rect key="frame" x="0.0" y="138" width="414" height="43.5"/>
+                                        <rect key="frame" x="0.0" y="137.5" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k8J-L2-Oao" id="1OW-s6-asS">
                                             <rect key="frame" x="0.0" y="0.0" width="383.5" height="43.5"/>

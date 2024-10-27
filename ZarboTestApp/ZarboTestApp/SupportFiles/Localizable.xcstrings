@@ -2,6 +2,7 @@
   "sourceLanguage" : "en",
   "strings" : {
     "Cancel" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
@@ -62,6 +63,7 @@
       }
     },
     "Try it on" : {
+      "extractionState" : "stale",
       "localizations" : {
         "ru" : {
           "stringUnit" : {
